@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace Yolov8_Traffic
         public MainWindow()
         {
             InitializeComponent();
+            Page_frm.Content = new Detection();
         }
 
         private void Detection_btn_Click(object sender, RoutedEventArgs e)

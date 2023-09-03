@@ -6,9 +6,70 @@
       xmlns:local="clr-namespace:Yolov8_Traffic"
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="800"
-      Title="Detection">
+      Title="Detection" Background="White"
+      FontSize="14" FontFamily="Arial">
 
     <Grid>
-        <TextBox Text="Page1"/>
+        <Border BorderBrush="Black" BorderThickness="2" Margin="39,67,561,133" Height="200" Width="200">
+            <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200"/>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="2" Margin="285,67,315,133" Height="200" Width="200">
+            <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200"/>
+        </Border>
+        <Button Content="Add Image" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="99,296,0,0" Width="80" Height="30">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="DarkGray" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Content="Detect" HorizontalAlignment="Left" Margin="345,301,0,0" VerticalAlignment="Top" Width="80" Height="30">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="DarkGray" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Border BorderBrush="Black" BorderThickness="2" Height="350" Width="240" Margin="525,25,35,25" CornerRadius="30" Background="DarkGray"/>
+        <Border BorderBrush="Black" BorderThickness="2" Height="335" Width="225" Margin="525,25,35,25" CornerRadius="30" Background="White">
+            <Grid>
+                <Label Content="Date" Margin="18,28,160,273"/>
+                <DatePicker Width="150" Height="25" Margin="61,30,10,275" />
+                <Label Content="Time" Margin="18,64,160,237"/>
+                <TextBox Width="150" Height="25" Margin="61,66,10,241"/>
+
+                <GroupBox Header="Number of vehicles" Margin="5,115,5,70">
+                    <Border BorderBrush="Black" BorderThickness="0.5" CornerRadius="5">
+                        <Grid>
+                            <Label Content="Trucks:" Width="55" Height="25" Margin="10,10,138,87"/>
+                            <Label Content="Buses :"  Width="55" Height="25" Margin="10,48,133,49"/>
+                            <Label Content="Cars   :" Width="55" Height="25" Margin="10,87,133,10"/>
+                            <Label Content="Motobikes :" Width="80" Height="25" Margin="90,10,27,86"/>
+                            <Label Content="Bikes        :" Width="80" Height="25" Margin="90,48,27,48"/>
+                            
+                            <TextBox Name="Trucks_txb" Width="25" Height="25" Margin="65,10,108,87"/>
+                            <TextBox Name="Buses_txb" Width="25" Height="25" Margin="65,48,108,49"/>
+                            <TextBox Name="Cars_txb" Width="25" Height="25" Margin="65,87,108,10"/>
+                            <TextBox Name="Motobikes_txb" Width="25" Height="25" Margin="170,10,2,87"/>
+                            <TextBox Name="Bikes_txb" Width="25" Height="25" Margin="170,48,2,49"/>
+                        </Grid>
+                    </Border>
+                </GroupBox>
+                <Button Content="Save" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="80" Height="30" Margin="0,266,0,0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="DarkGray" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </Grid>
+        </Border>
     </Grid>
 </Page>

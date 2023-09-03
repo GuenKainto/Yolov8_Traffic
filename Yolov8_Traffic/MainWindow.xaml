@@ -5,12 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yolov8_Traffic"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="850"
+        Background="DarkGray" FontFamily="Arial">
     <Grid>
         <Frame Name="Page_frm" Height="400" Width="800" Margin="0,34,0,0" NavigationUIVisibility="Hidden"/>
         <Border BorderBrush="Black" BorderThickness="2" Height="400" Width="800" Margin="0,34,0,0"/>
-        <Button Name="Detection_btn" Width="70" Content="Detection" HorizontalAlignment="Left" Margin="30,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.338,0.459" Click="Detection_btn_Click"/>
-        <Button Name="Satistics_btn" Width="70" Content="Statistics" HorizontalAlignment="Left" Margin="130,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.338,0.459" Click="Satistics_btn_Click"/>
+        <Button Name="Detection_btn" Height="30" Width="85" 
+                Content="Detection" HorizontalAlignment="Left" 
+                Margin="18,10,0,0" VerticalAlignment="Top" 
+                RenderTransformOrigin="-0.338,0.459" 
+                Click="Detection_btn_Click"
+                FontWeight="Bold" FontSize="14"/>
+        <Button Name="Satistics_btn" Height="30" Width="85" 
+                Content="Statistics" HorizontalAlignment="Left" 
+                Margin="130,10,0,0" VerticalAlignment="Top" 
+                RenderTransformOrigin="-0.338,0.459" 
+                Click="Satistics_btn_Click"
+                FontWeight="Bold" FontSize="14"/>
 
     </Grid>
 </Window>
