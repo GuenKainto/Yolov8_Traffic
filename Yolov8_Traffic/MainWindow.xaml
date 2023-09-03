@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Frame Content="Frame" Height="450" Width="700" Margin="100,0,0,-16"/>
+        <Frame Name="Page_frm" Height="400" Width="800" Margin="0,34,0,0" NavigationUIVisibility="Hidden"/>
+        <Border BorderBrush="Black" BorderThickness="2" Height="400" Width="800" Margin="0,34,0,0"/>
+        <Button Name="Detection_btn" Width="70" Content="Detection" HorizontalAlignment="Left" Margin="30,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.338,0.459" Click="Detection_btn_Click"/>
+        <Button Name="Satistics_btn" Width="70" Content="Statistics" HorizontalAlignment="Left" Margin="130,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.338,0.459" Click="Satistics_btn_Click"/>
 
     </Grid>
 </Window>

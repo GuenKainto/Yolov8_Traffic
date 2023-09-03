@@ -16,23 +16,13 @@ using System.Windows.Shapes;
 namespace Yolov8_Traffic
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Detection.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Detection : Page
     {
-        public MainWindow()
+        public Detection()
         {
             InitializeComponent();
-        }
-
-        private void Detection_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Page_frm.Content = new Detection();
-        }
-
-        private void Satistics_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Page_frm.Content = new Statistics();
         }
     }
 }
