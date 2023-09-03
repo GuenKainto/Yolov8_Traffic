@@ -10,13 +10,13 @@
       FontSize="14" FontFamily="Arial">
 
     <Grid>
-        <Border BorderBrush="Black" BorderThickness="2" Margin="39,67,561,133" Height="200" Width="200">
-            <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200"/>
+        <Border BorderBrush="Black" BorderThickness="2" Margin="22,32,544,133" Height="235" Width="235">
+            <Image Name="Add_img" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="235"/>
         </Border>
-        <Border BorderBrush="Black" BorderThickness="2" Margin="285,67,315,133" Height="200" Width="200">
-            <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200"/>
+        <Border BorderBrush="Black" BorderThickness="2" Margin="291,32,274,133" Height="235" Width="235">
+            <Image Name="Detect_img" HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="235"/>
         </Border>
-        <Button Content="Add Image" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="99,296,0,0" Width="80" Height="30">
+        <Button Name="Add_Image_btn" Content="Add Image" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="100,281,0,0" Width="80" Height="30" Click="Add_Image_btn_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="DarkGray" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
@@ -25,7 +25,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Content="Detect" HorizontalAlignment="Left" Margin="345,301,0,0" VerticalAlignment="Top" Width="80" Height="30">
+        <Button Name="Detect_btn" Content="Detect" HorizontalAlignment="Left" Margin="368,281,0,0" VerticalAlignment="Top" Width="80" Height="30" Click="Detect_btn_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="DarkGray" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
@@ -34,8 +34,8 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Border BorderBrush="Black" BorderThickness="2" Height="350" Width="240" Margin="525,25,35,25" CornerRadius="30" Background="DarkGray"/>
-        <Border BorderBrush="Black" BorderThickness="2" Height="335" Width="225" Margin="525,25,35,25" CornerRadius="30" Background="White">
+        <Border BorderBrush="Black" BorderThickness="2" Height="350" Width="240" Margin="545,21,15,29" CornerRadius="30" Background="DarkGray"/>
+        <Border BorderBrush="Black" BorderThickness="2" Height="335" Width="225" Margin="552,28,22,36" CornerRadius="30" Background="White">
             <Grid>
                 <Label Content="Date" Margin="18,28,160,273"/>
                 <DatePicker Width="150" Height="25" Margin="61,30,10,275" />
@@ -50,7 +50,7 @@
                             <Label Content="Cars   :" Width="55" Height="25" Margin="10,87,133,10"/>
                             <Label Content="Motobikes :" Width="80" Height="25" Margin="90,10,27,86"/>
                             <Label Content="Bikes        :" Width="80" Height="25" Margin="90,48,27,48"/>
-                            
+
                             <TextBox Name="Trucks_txb" Width="25" Height="25" Margin="65,10,108,87"/>
                             <TextBox Name="Buses_txb" Width="25" Height="25" Margin="65,48,108,49"/>
                             <TextBox Name="Cars_txb" Width="25" Height="25" Margin="65,87,108,10"/>
@@ -59,7 +59,7 @@
                         </Grid>
                     </Border>
                 </GroupBox>
-                <Button Content="Save" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="80" Height="30" Margin="0,266,0,0">
+                <Button Name="Save_btn" Content="Save" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="80" Height="30" Margin="0,266,0,0" Click="Save_btn_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="DarkGray" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
@@ -71,5 +71,7 @@
 
             </Grid>
         </Border>
+        <Label Content="Result detect" Width="100" Height="25" Margin="39,325,661,50"/>
+        <TextBox Name="Test" Height="25" HorizontalAlignment="Left" Margin="39,351,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="446"/>
     </Grid>
 </Page>
