@@ -57,7 +57,31 @@ namespace Yolov8_Traffic
             using var predictor = new YoloV8(modelpath);
             var result = predictor.Detect(selectedImagePath);
             Test.Text = result.ToString();
+            Dictionary<string, int> vehicleCounts = ParseVehicleCounts(result.ToString());
 
+            string selectedKey1 = "Truck";
+            string selectedKey2 = "Bus";
+            string selectedKey3 = "Car";
+            string selectedKey4 = "Motobike";
+            string selectedKey5 = "Bike";
+            if (vehicleCounts.ContainsKey(selectedKey1) || vehicleCounts.ContainsKey(selectedKey2) || 
+                vehicleCounts.ContainsKey(selectedKey3) || vehicleCounts.ContainsKey(selectedKey4) || 
+                vehicleCounts.ContainsKey(selectedKey5))
+            {
+                int selectedValue1 = vehicleCounts[selectedKey1];
+                int selectedValue2 = vehicleCounts[selectedKey2];
+                int selectedValue3 = vehicleCounts[selectedKey3];
+                int selectedValue4 = vehicleCounts[selectedKey4];
+                int selectedValue5 = vehicleCounts[selectedKey5];
+                Trucks_txb.Text = selectedValue1.ToString();
+                Buses_txb.Text = selectedValue2.ToString();
+                Cars_txb.Text = selectedValue3.ToString();
+                Motobikes_txb.Text = selectedValue4.ToString();
+                Bikes_txb.Text = selectedValue5.ToString();
+            }
+            
+
+            //plotting image
             using var origin = SixLabors.ImageSharp.Image.Load<Rgb24>(selectedImagePath);
             using var ploted = result.PlotImage(origin);
 
@@ -90,8 +114,39 @@ namespace Yolov8_Traffic
                     MessageBox.Show("Đã xảy ra lỗi khi lưu hình ảnh: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }*/
+
+
         }
 
+        static Dictionary<string, int> ParseVehicleCounts(string input)
+        {
+            Dictionary<string, int> vehicleCounts = new Dictionary<string, int>();
+
+            // Split string : string look like  3 truck, 1 bus, 2 car 
+            string[] parts = input.Split(',');
+
+            foreach (string part in parts)
+            {
+                string[] keyValue = part.Trim().Split(' ');
+                if (keyValue.Length == 2)
+                {
+                    string vehicle = keyValue[1];
+                    int count;
+                    if (int.TryParse(keyValue[0], out count))
+                    {
+                        vehicleCounts.Add(vehicle, count);
+                    }
+                }
+            }
+
+            if (!vehicleCounts.ContainsKey("Truck"))    vehicleCounts.Add("Truck", 0);        
+            if (!vehicleCounts.ContainsKey("Bus"))      vehicleCounts.Add("Bus", 0);        
+            if (!vehicleCounts.ContainsKey("Car"))      vehicleCounts.Add("Car", 0);
+            if (!vehicleCounts.ContainsKey("Motobike")) vehicleCounts.Add("Motobike", 0);
+            if (!vehicleCounts.ContainsKey("Bike"))     vehicleCounts.Add("Bike", 0);
+
+            return vehicleCounts;
+        }
 
         private void Save_btn_Click(object sender, RoutedEventArgs e)
         {
