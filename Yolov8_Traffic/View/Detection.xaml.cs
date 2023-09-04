@@ -160,19 +160,27 @@ namespace Yolov8_Traffic
 
         private void Save_btn_Click(object sender, RoutedEventArgs e)
         {
-            string date = Date_Picker.SelectedDate.ToString();
-            string time = Time_tb.Text;
-            DateTime dateAndTime = DateTime.ParseExact(date + " " + time, "yyyy-MM-dd HH:mm:ss", null);
+            if (Date_Picker.SelectedDate == null || Time_tb.Text == null) MessageBox.Show("Enter the day and time","Warning");
+            else if(Trucks_txb.Text == "" || Buses_txb.Text == "" || Cars_txb.Text == "" || Motobikes_txb.Text == "" || Bikes_txb.Text == "")
+            {
+                DateTime? selectedDate = Date_Picker.SelectedDate;
+                string date = selectedDate.Value.Date.ToString("yyyy-MM-dd");
+                string time = Time_tb.Text;
+                DateTime dateAndTime = DateTime.ParseExact(date + " " + time, "yyyy-MM-dd HH:mm:ss", null);
 
-            int truck = Int32.Parse(Trucks_txb.Text);
-            int bus = Int32.Parse(Buses_txb.Text);
-            int car = Int32.Parse(Cars_txb.Text);
-            int motobike = Int32.Parse(Motobikes_txb.Text);
-            int bike = Int32.Parse(Bikes_txb.Text);
+                int truck = Int32.Parse(Trucks_txb.Text);
+                int bus = Int32.Parse(Buses_txb.Text);
+                int car = Int32.Parse(Cars_txb.Text);
+                int motobike = Int32.Parse(Motobikes_txb.Text);
+                int bike = Int32.Parse(Bikes_txb.Text);
 
-            bool result = VehicleCounts_Controler.Insert(dateAndTime,truck, bus, car,motobike,bike);
-            if (result == true) MessageBox.Show("Save data successfully","Message");
-            else MessageBox.Show("Can't save","Message");
+                bool result = VehicleCounts_Controler.Insert(dateAndTime, truck, bus, car, motobike, bike);
+                MessageBox.Show(result + "");
+                if (result == true) MessageBox.Show("Save data successfully", "Message");
+                else MessageBox.Show("Can't save", "Message");
+            }
+            else MessageBox.Show("Detect picture first!", "Warning");
+                
         }
     }
 }

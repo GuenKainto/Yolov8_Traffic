@@ -30,10 +30,6 @@ namespace Yolov8_Traffic.Controler
                 cmd.Parameters.AddWithValue("@motobike", motobike);
                 cmd.Parameters.AddWithValue("@bike", bike);
                 object result = cmd.ExecuteScalar();
-                if (result == null)
-                {
-                    return false;
-                }
                 return true;
             }
             catch (Exception ex) 
