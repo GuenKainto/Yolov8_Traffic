@@ -22,6 +22,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Data;
 using Microsoft.Data.SqlClient;
+using Yolov8_Traffic.Controler;
 
 namespace Yolov8_Traffic
 {
@@ -30,9 +31,9 @@ namespace Yolov8_Traffic
     /// </summary>
     public partial class Detection : Page
     {
-        DatabaseConnnection dtc = new DatabaseConnnection(); 
+        DatabaseConnection dtc = new DatabaseConnection(); 
         SqlCommand cmd = new SqlCommand();
-        public static string selectedImagePath ;
+        public static string selectedImagePath = "" ;
         public static string modelpath = "D:\\[Study]\\.NET\\NET_Programming\\Yolov8_Traffic\\Yolov8_Traffic\\Yolov8_opset15.onnx";
         public Detection()
         {
@@ -161,15 +162,17 @@ namespace Yolov8_Traffic
         {
             string date = Date_Picker.SelectedDate.ToString();
             string time = Time_tb.Text;
+            DateTime dateAndTime = DateTime.ParseExact(date + " " + time, "yyyy-MM-dd HH:mm:ss", null);
+
             int truck = Int32.Parse(Trucks_txb.Text);
             int bus = Int32.Parse(Buses_txb.Text);
             int car = Int32.Parse(Cars_txb.Text);
             int motobike = Int32.Parse(Motobikes_txb.Text);
             int bike = Int32.Parse(Bikes_txb.Text);
 
-            //string querry = "INSERT INTO VehicleCounts VALUES ("+date+time")";
-
-
+            bool result = VehicleCounts_Controler.Insert(dateAndTime,truck, bus, car,motobike,bike);
+            if (result == true) MessageBox.Show("Save data successfully","Message");
+            else MessageBox.Show("Can't save","Message");
         }
     }
 }
