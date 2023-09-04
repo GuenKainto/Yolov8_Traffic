@@ -38,9 +38,9 @@
         <Border BorderBrush="Black" BorderThickness="2" Height="335" Width="225" Margin="552,28,22,36" CornerRadius="30" Background="White">
             <Grid>
                 <Label Content="Date" Margin="18,28,160,273"/>
-                <DatePicker Width="150" Height="25" Margin="61,30,10,275" />
+                <DatePicker Name="Date_Picker" Width="150" Height="25" Margin="61,30,10,275" />
                 <Label Content="Time" Margin="18,64,160,237"/>
-                <TextBox Width="150" Height="25" Margin="61,66,10,241"/>
+                <TextBox Name="Time_tb" Width="150" Height="25" Margin="61,66,10,241"/>
 
                 <GroupBox Header="Number of vehicles" Margin="5,115,5,70">
                     <Border BorderBrush="Black" BorderThickness="0.5" CornerRadius="5">

@@ -19,6 +19,9 @@ using Compunet.YoloV8.Plotting;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Data;
+using Microsoft.Data.SqlClient;
 
 namespace Yolov8_Traffic
 {
@@ -27,11 +30,17 @@ namespace Yolov8_Traffic
     /// </summary>
     public partial class Detection : Page
     {
+        DatabaseConnnection dtc = new DatabaseConnnection(); 
+        SqlCommand cmd = new SqlCommand();
         public static string selectedImagePath ;
         public static string modelpath = "D:\\[Study]\\.NET\\NET_Programming\\Yolov8_Traffic\\Yolov8_Traffic\\Yolov8_opset15.onnx";
         public Detection()
         {
             InitializeComponent();
+            DateTime currentTime = DateTime.Now;
+            Date_Picker.SelectedDate = DateTime.Now;
+            string formattedTime = currentTime.ToString("HH:mm:ss");
+            Time_tb.Text = formattedTime;
         }
 
         private void Add_Image_btn_Click(object sender, RoutedEventArgs e)
@@ -150,6 +159,16 @@ namespace Yolov8_Traffic
 
         private void Save_btn_Click(object sender, RoutedEventArgs e)
         {
+            string date = Date_Picker.SelectedDate.ToString();
+            string time = Time_tb.Text;
+            int truck = Int32.Parse(Trucks_txb.Text);
+            int bus = Int32.Parse(Buses_txb.Text);
+            int car = Int32.Parse(Cars_txb.Text);
+            int motobike = Int32.Parse(Motobikes_txb.Text);
+            int bike = Int32.Parse(Bikes_txb.Text);
+
+            //string querry = "INSERT INTO VehicleCounts VALUES ("+date+time")";
+
 
         }
     }
