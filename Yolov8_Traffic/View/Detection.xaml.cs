@@ -162,6 +162,8 @@ namespace Yolov8_Traffic
         {
             if (Date_Picker.SelectedDate == null || Time_tb.Text == null) MessageBox.Show("Enter the day and time","Warning");
             else if(Trucks_txb.Text == "" || Buses_txb.Text == "" || Cars_txb.Text == "" || Motobikes_txb.Text == "" || Bikes_txb.Text == "")
+                MessageBox.Show("Detect picture first!", "Warning");
+            else 
             {
                 DateTime? selectedDate = Date_Picker.SelectedDate;
                 string date = selectedDate.Value.Date.ToString("yyyy-MM-dd");
@@ -179,7 +181,6 @@ namespace Yolov8_Traffic
                 if (result == true) MessageBox.Show("Save data successfully", "Message");
                 else MessageBox.Show("Can't save", "Message");
             }
-            else MessageBox.Show("Detect picture first!", "Warning");
                 
         }
     }
