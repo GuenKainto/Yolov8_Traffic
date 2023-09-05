@@ -177,7 +177,6 @@ namespace Yolov8_Traffic
                 int bike = Int32.Parse(Bikes_txb.Text);
 
                 bool result = VehicleCounts_Controler.Insert(dateAndTime, truck, bus, car, motobike, bike);
-                MessageBox.Show(result + "");
                 if (result == true) MessageBox.Show("Save data successfully", "Message");
                 else MessageBox.Show("Can't save", "Message");
             }

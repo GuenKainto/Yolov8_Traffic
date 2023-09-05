@@ -11,7 +11,7 @@
 
     <Grid>
         <Label Content="Date" Margin="10,32,740,343"/>
-        <DatePicker Name="Date_Picker" Width="150" Height="25" Margin="60,32,590,343" />
+        <DatePicker Name="Date_Picker" Width="150" Height="25" Margin="60,32,590,343" SelectedDateChanged="Date_Picker_SelectedDateChanged" />
         <Button Name="Delete_btn" Content="Delete" HorizontalAlignment="Left" Margin="245,30,0,0" VerticalAlignment="Top" Width="80" Height="30" Click="Delete_btn_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">

@@ -40,8 +40,51 @@ namespace Yolov8_Traffic.Controler
                 return false;
             }
         }
+        public static bool DeleteByDateAndTime(DateTime dateAndTime)
+        {
+            string querry = "DELETE FROM VehicleCounts WHERE dateAndTime = @dateAndTime";
+            if (dtc.GetConnection().State == System.Data.ConnectionState.Closed)
+            {
+                dtc.GetConnection().Open();
+            }
+            try
+            {
+                cmd = new SqlCommand(querry, dtc.GetConnection());
+                cmd.Parameters.AddWithValue("@dateAndTime", dateAndTime);
+                cmd.ExecuteNonQuery();
+                dtc.GetConnection().Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                return false;
+            }
+        }
+        public static bool DeleteAll(DateTime dateAndTime)
+        {
+            string date = dateAndTime.Date.ToString("yyyy-MM-dd");
+            MessageBox.Show(date);
+            string querry = "DELETE FROM VehicleCounts WHERE CONVERT(DATE, dateAndTime) = @date";
+            if (dtc.GetConnection().State == System.Data.ConnectionState.Closed)
+            {
+                dtc.GetConnection().Open();
+            }
+            try
+            {
+                cmd = new SqlCommand(querry, dtc.GetConnection());
+                cmd.Parameters.AddWithValue("@date", date);
+                cmd.ExecuteNonQuery();
+                dtc.GetConnection().Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                return false;
+            }
+        }
 
-        
 
     }
 }

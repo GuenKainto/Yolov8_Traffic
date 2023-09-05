@@ -35,6 +35,7 @@ namespace Yolov8_Traffic
 
         public void ShowData()
         {
+            VehicleCounts_dg.Items.Clear();
             DateTime? selectedDate = Date_Picker.SelectedDate;
             string date = selectedDate.Value.Date.ToString("yyyy-MM-dd");
 
@@ -53,7 +54,6 @@ namespace Yolov8_Traffic
                 {
                     DateTime dateAndTime = reader.GetDateTime(0);
                     string timeOnly = dateAndTime.ToString("HH:mm:ss");
-                    MessageBox.Show(timeOnly);
                     int truck = reader.GetInt32(1);
                     int bus = reader.GetInt32(2);
                     int car = reader.GetInt32(3);
@@ -61,6 +61,7 @@ namespace Yolov8_Traffic
                     int bike = reader.GetInt32(5);
                     VehicleCounts_dg.Items.Add(new { time = timeOnly, truck = truck , bus = bus, car = car, motobike = motobike , bike = bike });
                 }
+                reader.Close();
             }
             catch (Exception ex)
             {
@@ -70,12 +71,51 @@ namespace Yolov8_Traffic
 
         private void Delete_btn_Click(object sender, RoutedEventArgs e)
         {
+            var temp = VehicleCounts_dg.SelectedItem;
+            if (temp != null)
+            {
+                MessageBoxResult rs = MessageBox.Show("Are you sure to delete this ?","Warning",MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (rs == MessageBoxResult.Yes)
+                {
+                    dynamic selected = temp;
+                    DateTime? selectedDate = Date_Picker.SelectedDate;
+                    string date = selectedDate.Value.Date.ToString("yyyy-MM-dd");
+                    string time = selected.time;
+                    DateTime dateAndTime = DateTime.ParseExact(date + " " + time, "yyyy-MM-dd HH:mm:ss", null);
 
+                    bool result = VehicleCounts_Controler.DeleteByDateAndTime(dateAndTime);
+                    if (result == true)
+                    {
+                        MessageBox.Show("Delete successfully", "Message");
+                        ShowData();
+                    }
+                    else MessageBox.Show("Can't delete", "Message");
+                }
+            }
+            else MessageBox.Show("Please choose data you want to delete", "Warning");
         }
 
         private void Clear_btn_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult rs = MessageBox.Show("Are you sure to clear all this ?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (rs == MessageBoxResult.Yes)
+            {
 
+                DateTime? selectedDate = Date_Picker.SelectedDate;
+
+                bool result = VehicleCounts_Controler.DeleteAll(selectedDate.Value);
+                if (result == true)
+                {
+                    MessageBox.Show("Clear successfully", "Message");
+                    ShowData();
+                }
+                else MessageBox.Show("Can't Clear", "Message");
+            }
+        }
+
+        private void Date_Picker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ShowData();
         }
     }
 }
