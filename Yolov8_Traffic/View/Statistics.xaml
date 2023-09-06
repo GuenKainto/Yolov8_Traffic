@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Yolov8_Traffic"
+      xmlns:oxy="http://oxyplot.org/wpf"
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="800"
       Title="Statistics" Background="White"
@@ -30,7 +31,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <DataGrid x:Name="VehicleCounts_dg" HorizontalAlignment="Left" Height="280" Margin="10,90,0,0" VerticalAlignment="Top" Width="400" >
+        <DataGrid x:Name="VehicleCounts_dg" HorizontalAlignment="Left" Height="270" Margin="10,90,0,0" VerticalAlignment="Top" Width="400" >
             <DataGrid.Columns>
                 <DataGridTextColumn Width="1.5*" Header="Time" Binding="{Binding time}"/>
                 <DataGridTextColumn Width="1*" Header="Truck" Binding="{Binding truck}"/>
@@ -38,7 +39,12 @@
                 <DataGridTextColumn Width="1*" Header="Car" Binding="{Binding car}"/>
                 <DataGridTextColumn Width="1*" Header="Motobike" Binding="{Binding motobike}"/>
                 <DataGridTextColumn Width="1*" Header="Bike" Binding="{Binding bike}"/>
+                <DataGridTextColumn Width="1*" Header="TDC" Binding="{Binding TDC}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Label Content="TDC(Traffic Density Coefficient) = Bike x 1  + Motobike x 1.5 + Car x 4 + Bus x 8 + Truck x 10" Margin="106,365,106,10"/>
+        <Border BorderBrush="Black" BorderThickness="2" Margin="415,90,10,40">
+            <oxy:PlotView Name="PlotView"/>
+        </Border>
     </Grid>
 </Page>

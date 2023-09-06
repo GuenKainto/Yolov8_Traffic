@@ -15,6 +15,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Yolov8_Traffic.Controler;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using OxyPlot;
+using OxyPlot.Series;
+using OxyPlot.Wpf;
+using Yolov8_Traffic.Model;
+using OxyPlot.Axes;
 
 namespace Yolov8_Traffic
 {
@@ -32,7 +37,72 @@ namespace Yolov8_Traffic
             Date_Picker.SelectedDate = DateTime.Now;
             ShowData();
         }
+        public void ShowPlotView()
+        {
+            //data get in Database
+            var dataPoints = new List<DataPointModel>();
+            if (dtc.GetConnection().State == System.Data.ConnectionState.Closed)
+            {
+                dtc.GetConnection().Open();
+            }
+            try
+            {
+                DateTime? selectedDate = Date_Picker.SelectedDate;
+                string date = selectedDate.Value.Date.ToString("yyyy-MM-dd");
 
+                string querry = "SELECT * FROM VehicleCounts WHERE CONVERT(DATE, dateAndTime) = @date";
+                cmd = new SqlCommand(querry, dtc.GetConnection());
+                cmd.Parameters.AddWithValue("@date", date);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    DateTime dateAndTime = reader.GetDateTime(0);
+                    int truck = reader.GetInt32(1);
+                    int bus = reader.GetInt32(2);
+                    int car = reader.GetInt32(3);
+                    int motobike = reader.GetInt32(4);
+                    int bike = reader.GetInt32(5);
+
+                    var dataPoint = new DataPointModel 
+                    {
+                        Time = dateAndTime,
+                        TDC = bike * 1 + motobike * 1.5 + car * 4 + bus * 8 + truck * 10
+                    };
+                    dataPoints.Add(dataPoint);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+
+            var plotModel = new PlotModel { Title = "Traffic Density Chart" };
+            //set Axis
+            var xAxis = new DateTimeAxis
+            {
+                Position = AxisPosition.Bottom,
+                StringFormat = "HH:mm:ss",
+                Title = "Time"
+            };
+            plotModel.Axes.Add(xAxis);
+            var yAxis = new LinearAxis
+            {
+                Position = AxisPosition.Left,
+                Title = "TDC"
+            };
+            plotModel.Axes.Add(yAxis);
+            //Set data
+            var series = new LineSeries();
+            foreach (var dataPoint in dataPoints)
+            {
+                double xValue = DateTimeAxis.ToDouble(dataPoint.Time);
+                series.Points.Add(new DataPoint(xValue, dataPoint.TDC));
+            }
+            plotModel.Series.Add(series);
+            PlotView.Model = plotModel;
+        }
         public void ShowData()
         {
             VehicleCounts_dg.Items.Clear();
@@ -59,7 +129,7 @@ namespace Yolov8_Traffic
                     int car = reader.GetInt32(3);
                     int motobike = reader.GetInt32(4);
                     int bike = reader.GetInt32(5);
-                    VehicleCounts_dg.Items.Add(new { time = timeOnly, truck = truck , bus = bus, car = car, motobike = motobike , bike = bike });
+                    VehicleCounts_dg.Items.Add(new { time = timeOnly, truck = truck , bus = bus, car = car, motobike = motobike , bike = bike , TDC = bike*1+motobike*1.5+car*4+bus*8+truck*10});
                 }
                 reader.Close();
             }
@@ -67,6 +137,8 @@ namespace Yolov8_Traffic
             {
                 MessageBox.Show(ex.Message, "Error");
             }
+
+            ShowPlotView();
         }
 
         private void Delete_btn_Click(object sender, RoutedEventArgs e)
