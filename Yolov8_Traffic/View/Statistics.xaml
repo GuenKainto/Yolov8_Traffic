@@ -13,38 +13,16 @@
     <Grid>
         <Label Content="Date" Margin="10,32,740,343"/>
         <DatePicker Name="Date_Picker" Width="150" Height="25" Margin="60,32,590,343" SelectedDateChanged="Date_Picker_SelectedDateChanged" />
-        <Button Name="Delete_btn" Content="Delete" HorizontalAlignment="Left" Margin="245,30,0,0" VerticalAlignment="Top" Width="80" Height="30" Click="Delete_btn_Click">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="DarkGray" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Button Name="Clear_btn" Content="Clear" HorizontalAlignment="Left" Margin="330,30,0,0" VerticalAlignment="Top" Width="80" Height="30" Click="Clear_btn_Click">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="DarkGray" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <DataGrid x:Name="VehicleCounts_dg" HorizontalAlignment="Left" Height="270" Margin="10,90,0,0" VerticalAlignment="Top" Width="400" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="1.5*" Header="Time" Binding="{Binding time}"/>
-                <DataGridTextColumn Width="1*" Header="Truck" Binding="{Binding truck}"/>
-                <DataGridTextColumn Width="1*" Header="Bus" Binding="{Binding bus}"/>
-                <DataGridTextColumn Width="1*" Header="Car" Binding="{Binding car}"/>
-                <DataGridTextColumn Width="1*" Header="Motobike" Binding="{Binding motobike}"/>
-                <DataGridTextColumn Width="1*" Header="Bike" Binding="{Binding bike}"/>
-                <DataGridTextColumn Width="1*" Header="TDC" Binding="{Binding TDC}"/>
-            </DataGrid.Columns>
-        </DataGrid>
         <Label Content="TDC(Traffic Density Coefficient) = Bike x 1  + Motobike x 1.5 + Car x 4 + Bus x 8 + Truck x 10" Margin="106,365,106,10"/>
-        <Border BorderBrush="Black" BorderThickness="2" Margin="415,90,10,40">
-            <oxy:PlotView Name="PlotView"/>
-        </Border>
+        <Frame Name="Frame_frm" Height="300" Width="650" Margin="0,34,0,0" NavigationUIVisibility="Hidden"/>
+        <Button x:Name="ChangePage_btn" Content="View" HorizontalAlignment="Left" Margin="645,25,0,0" VerticalAlignment="Top" Width="80" Height="30" Click="ChangePage_btn_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="LightGray" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Page>

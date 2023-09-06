@@ -1,0 +1,44 @@
+﻿<Page x:Class="Yolov8_Traffic.View.DataGridFrame"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Yolov8_Traffic.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="650"
+      Background="White"
+      FontSize="14" FontFamily="Arial"
+      Title="DataGridFrame">
+
+    <Grid>
+        <Button x:Name="Delete_btn" Content="Delete" HorizontalAlignment="Left" Margin="480,0,0,0" VerticalAlignment="Top" Width="80" Height="30" Click="Delete_btn_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="DarkGray" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="Clear_btn" Content="Clear" HorizontalAlignment="Left" Margin="565,0,0,0" VerticalAlignment="Top" Width="80" Height="30" Click="Clear_btn_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="DarkGray" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <DataGrid x:Name="VehicleCounts_dg" HorizontalAlignment="Center" Height="260" VerticalAlignment="Top" Width="650" Margin="0,40,0,0" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="1.5*" Header="Time" Binding="{Binding time}"/>
+                <DataGridTextColumn Width="1*" Header="Truck" Binding="{Binding truck}"/>
+                <DataGridTextColumn Width="1*" Header="Bus" Binding="{Binding bus}"/>
+                <DataGridTextColumn Width="1*" Header="Car" Binding="{Binding car}"/>
+                <DataGridTextColumn Width="1*" Header="Motobike" Binding="{Binding motobike}"/>
+                <DataGridTextColumn Width="1*" Header="Bike" Binding="{Binding bike}"/>
+                <DataGridTextColumn Width="1*" Header="TDC" Binding="{Binding TDC}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
