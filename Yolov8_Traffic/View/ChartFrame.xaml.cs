@@ -80,6 +80,7 @@ namespace Yolov8_Traffic.View
             var yAxis = new LinearAxis
             {
                 Position = AxisPosition.Left,
+                Minimum = 0,
                 Title = "TDC"
             };
             plotModel.Axes.Add(yAxis);

@@ -64,7 +64,6 @@ namespace Yolov8_Traffic.Controler
         public static bool DeleteAll(DateTime dateAndTime)
         {
             string date = dateAndTime.Date.ToString("yyyy-MM-dd");
-            MessageBox.Show(date);
             string querry = "DELETE FROM VehicleCounts WHERE CONVERT(DATE, dateAndTime) = @date";
             if (dtc.GetConnection().State == System.Data.ConnectionState.Closed)
             {
